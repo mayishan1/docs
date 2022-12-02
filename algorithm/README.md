@@ -1,3 +1,3 @@
 # 算法目录
 
-- [回溯](algorithm/backtrack.md)
+- [回溯](backtrack.md)
