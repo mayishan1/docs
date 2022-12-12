@@ -19,7 +19,7 @@
 5. 在`编写代码`时，想要`立刻看到效果`，需要发布到服务器上
    1. 期望保留页面的状态（页面有表单信息，代码更改后即可以看到更新内容又保留表单信息）
 6. 等
-7. 
+
 ### 生产资源
 
 1. `css`样式`兼容前缀`
@@ -80,6 +80,7 @@ export default dep;
 ```
 
 整体是一个立即执行函数 [IIEF](https://developer.mozilla.org/zh-CN/docs/Glossary/IIFE)
+
 ```javascript
 (function() {
   function outer(modules, cache, entry) {
