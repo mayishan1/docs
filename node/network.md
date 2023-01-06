@@ -11,11 +11,11 @@ OSI 七层模型
 
 - 应用层 http、ssh
 - 表示层 对数据进行加密、转换、压缩
-- 回话层 控制网络的建立和终止
+- 会话层 控制网络的建立和终止
 - 传输层 控制数据传输可靠性
-- 网络层 ip
+- 网络层 ip 寻址
 - 数据链路层 确定目标主机
-- 物理层
+- 物理层 解决使用回合中信号来传输比特的问题
 
 ## 数据传输
 
@@ -60,6 +60,7 @@ const server = net.createConnection({
 });
 
 server.on("connect", () => {
+  // 发送数据
   server.write(transform.encode("数据1"));
   server.write(transform.encode("数据12"));
   server.write(transform.encode("数据123"));
@@ -68,9 +69,11 @@ server.on("connect", () => {
 });
 
 server.on("data", (buffer) => {
+  // 接收数据
   receiveChunk = Buffer.concat([receiveChunk, buffer]);
 
   while (transform.hasData(receiveChunk)) {
+    // 获取一组数据
     const data = transform.getData(receiveChunk);
 
     console.log(data.currentBuffer.toString());
@@ -104,7 +107,7 @@ server.on("connection", (socket) => {
     while (transform.hasData(receiveChunk)) {
       const data = transform.getData(receiveChunk);
 
-      console.log('请求数据' + data.currentBuffer.toString());
+      console.log("请求数据" + data.currentBuffer.toString());
       socket.write(
         transform.encode("响应数据：" + data.currentBuffer.toString())
       );
